@@ -99,17 +99,17 @@ func decodeMnemonic(fileName, savePath string) error {
 	if err != nil {
 		return err
 	}
-	data, err := Decode(string(fbytes))
+	contents, err := FromMnemonic(string(fbytes))
 	if err != nil {
 		return err
 	}
-	contents, err := FromMnemonic(string(data))
+	data, err := Decode(contents)
 	if err != nil {
 		return err
 	}
 	return ioutil.WriteFile(
 		savePath,
-		[]byte(contents),
+		data,
 		os.FileMode(0600),
 	)
 }
