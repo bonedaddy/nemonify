@@ -21,6 +21,7 @@ func newApp() *cli.App {
 	app.Author = "bonedaddy"
 	app.Name = "nemonify"
 	app.Usage = "takes input, turns into mnemonic phrase"
+	app.Commands = cli.Commands{generate(), decode()}
 	return app
 }
 
@@ -60,6 +61,9 @@ func decode() cli.Command {
 		Name:  "decode",
 		Usage: "decode a mnemonic phrase",
 		Action: func(c *cli.Context) error {
+			if c.String("file.name") == "" {
+				return errors.New("file.name flag is empty")
+			}
 			return decodeMnemonic(
 				c.String("file.name"),
 				c.String("save.path"),
