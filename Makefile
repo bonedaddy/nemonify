@@ -32,4 +32,4 @@ fmt:
 
 .PHONY: cli
 cli:
-	go build
+	go build -ldflags="-s -w"
