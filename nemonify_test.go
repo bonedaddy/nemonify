@@ -1,4 +1,4 @@
-package main
+package nemonify
 
 import (
 	"io/ioutil"
